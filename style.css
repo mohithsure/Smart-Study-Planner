@@ -1,0 +1,240 @@
+/* General Layout */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  color: #333;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  color: white;
+  text-align: center;
+  padding: 25px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  position: relative;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header button {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: white;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+header button:hover {
+  background: #eee;
+  transform: scale(1.05);
+}
+
+main {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+/* Card style */
+#task-form, #task-list, #progress {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.6s ease;
+}
+
+/* Centered Task Form */
+#task-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#task-form h2 {
+  text-align: center;
+}
+
+#task-form input, 
+#task-form button {
+  padding: 12px;
+  margin: 10px 0;
+  width: 70%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#task-form button {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+#task-form button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #2ebf91, #136a8a);
+}
+
+/* Task List */
+#task-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.task {
+  background: rgba(255,255,255,0.95);
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s, background 0.3s;
+  animation: fadeIn 0.4s ease;
+}
+
+.task:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+.task.completed {
+  text-decoration: line-through;
+  background: rgba(200, 255, 200, 0.9);
+}
+
+/* Deadline Highlight */
+.task.deadline-today { background: rgba(255, 230, 150, 0.9); }
+.task.overdue { background: rgba(255, 150, 150, 0.9); }
+
+.task button {
+  margin-left: 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.task button:hover {
+  transform: scale(1.1);
+}
+
+/* Ripple Effect */
+.task button::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 50%; left: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.4s;
+}
+.task button:active::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.complete-btn { background: #28a745; color: white; }
+.delete-btn { background: #dc3545; color: white; }
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 25px;
+  background: #eee;
+  border-radius: 12px;
+  margin-top: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  transition: width 0.6s ease-in-out;
+  box-shadow: 0 0 10px rgba(0,114,255,0.6);
+}
+
+/* Dark Mode */
+.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+.dark-mode #task-form,
+.dark-mode #task-list,
+.dark-mode #progress {
+  background: rgba(30,30,40,0.85);
+  color: #f0f0f0;
+}
+
+.dark-mode .progress-bar { background: #444; }
+
+.dark-mode header {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+}
+
+.dark-mode header button {
+  background: #444;
+  color: white;
+}
+
+/* Dark Mode Task Items */
+.dark-mode .task {
+  background: rgba(40, 40, 50, 0.95);
+  color: #f0f0f0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+.dark-mode .task.completed {
+  background: rgba(50, 80, 50, 0.9);
+  color: #b2ffb2;
+}
+
+.dark-mode .task.deadline-today {
+  background: rgba(255, 210, 120, 0.85);
+  color: #222;
+}
+
+.dark-mode .task.overdue {
+  background: rgba(255, 120, 120, 0.85);
+  color: #222;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
